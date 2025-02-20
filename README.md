@@ -3,3 +3,4 @@
 ## Список лабораторных работ
 - [Лабораторная работа №1](https://github.com/FireSpirit171/TMO/tree/main/lab1)
 - [Лабораторная работа №2](https://github.com/FireSpirit171/TMO/tree/main/lab2)
+- [Лабораторная работа №3](https://github.com/FireSpirit171/TMO/tree/main/lab3)
