@@ -54,6 +54,38 @@ values = list(map(int, input().split()))
 print(adjust_values(total_days, required_good_days, values))
 
 
+# Задача 4
+n, x, y, z = map(int, input().split())
+a = list(map(int, input().split()))
+
+min_ops = float('inf')
+best_indices = []
+best_increments = []
+
+for i in range(n):
+    for j in range(n):
+        for k in range(n):
+            ops_x = (x - (a[i] % x)) % x
+            ops_y = (y - (a[j] % y)) % y
+            ops_z = (z - (a[k] % z)) % z
+
+            if i == j:
+                ops_y = max(0, ops_y - ops_x)
+            if i == k:
+                ops_z = max(0, ops_z - ops_x)
+            if j == k:
+                ops_z = max(0, ops_z - ops_y)
+
+            total_ops = ops_x + ops_y + ops_z
+
+            if total_ops < min_ops:
+                min_ops = total_ops
+                best_indices = [i, j, k]
+                best_increments = [ops_x, ops_y, ops_z]
+
+print(min_ops)
+
+
 # Задача 5
 def calculate_min_cuts(n, s, a):
     prefix = [0] * (n + 1)
@@ -116,7 +148,6 @@ points = [tuple(map(int, input().split())) for _ in range(n)]
 print(find_max_non_collinear_triplets(points))
 
 
-
 # Задача 7
 MOD = 998244353
 
@@ -144,5 +175,3 @@ nums = list(map(int, input().split()))
 result = compute_powers(n, k, nums)
 for value in result:
     print(value)
-
-
