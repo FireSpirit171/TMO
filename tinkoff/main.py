@@ -73,6 +73,50 @@ a = list(map(int, input().split()))
 print(calculate_min_cuts(n, s, a))
 
 
+# Задача 6
+def check_collinearity(p1, p2, p3):
+    x1, y1 = p1
+    x2, y2 = p2
+    x3, y3 = p3
+    return (x2 - x1) * (y3 - y1) == (x3 - x1) * (y2 - y1)
+
+def find_max_non_collinear_triplets(points):
+    n = len(points)
+    triplets = []
+    used = [False] * n
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            for k in range(j + 1, n):
+                if not check_collinearity(points[i], points[j], points[k]):
+                    triplets.append((i, j, k))
+
+    triplets.sort()
+
+    max_count = 0
+
+    def backtrack(index, count):
+        nonlocal max_count
+        if index == len(triplets):
+            max_count = max(max_count, count)
+            return
+        backtrack(index + 1, count) 
+
+        i, j, k = triplets[index]
+        if not (used[i] or used[j] or used[k]):
+            used[i] = used[j] = used[k] = True
+            backtrack(index + 1, count + 1)
+            used[i] = used[j] = used[k] = False
+
+    backtrack(0, 0)
+    return max_count
+
+n = int(input())
+points = [tuple(map(int, input().split())) for _ in range(n)]
+print(find_max_non_collinear_triplets(points))
+
+
+
 # Задача 7
 MOD = 998244353
 
