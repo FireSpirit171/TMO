@@ -2,6 +2,7 @@
 s = input().strip() 
 print("YES" if s.index("R") < s.index("M") else "NO")
 
+
 # Задача 2
 def find_three_powers_of_two(a):
     powers = []
@@ -26,6 +27,7 @@ for _ in range(n):
 
 print("\n".join(map(str, results)))
 
+
 # Задача 3
 def adjust_values(total_days, required_good_days, values):
     lower_bound, upper_bound = values[0], values[1]
@@ -49,9 +51,54 @@ def adjust_values(total_days, required_good_days, values):
 
 total_days, required_good_days = map(int, input().split())
 values = list(map(int, input().split()))
-
 print(adjust_values(total_days, required_good_days, values))
 
 
+# Задача 5
+def calculate_min_cuts(n, s, a):
+    prefix = [0] * (n + 1)
+    for i in range(n):
+        prefix[i+1] = prefix[i] + a[i]
+    
+    total = 0
+    for l in range(1, n+1):
+        for r in range(l, n+1):
+            segment_sum = prefix[r] - prefix[l-1]
+            cuts = (segment_sum + s - 1) // s
+            total += cuts
+    return total
+
+n, s = map(int, input().split())
+a = list(map(int, input().split()))
+print(calculate_min_cuts(n, s, a))
+
+
+# Задача 7
+MOD = 998244353
+
+def compute_powers(n, k, nums):
+    from collections import defaultdict
+
+    sum_pairs = defaultdict(int) 
+    for i in range(n):
+        for j in range(i + 1, n):
+            pair_sum = nums[i] + nums[j]
+            sum_pairs[pair_sum] += 1
+
+    output = []
+    for r in range(1, k + 1):
+        total_sum = 0
+        for pair_sum, count in sum_pairs.items():
+            total_sum += pow(pair_sum, r, MOD) * count
+            total_sum %= MOD
+        output.append(total_sum)
+
+    return output
+
+n, k = map(int, input().split())
+nums = list(map(int, input().split()))
+result = compute_powers(n, k, nums)
+for value in result:
+    print(value)
 
 
