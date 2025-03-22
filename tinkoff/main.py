@@ -152,13 +152,14 @@ print(find_max_non_collinear_triplets(points))
 MOD = 998244353
 
 def compute_powers(n, k, nums):
-    from collections import defaultdict
-
-    sum_pairs = defaultdict(int) 
+    sum_pairs = {}
     for i in range(n):
         for j in range(i + 1, n):
             pair_sum = nums[i] + nums[j]
-            sum_pairs[pair_sum] += 1
+            if pair_sum in sum_pairs:
+                sum_pairs[pair_sum] += 1
+            else:
+                sum_pairs[pair_sum] = 1
 
     output = []
     for r in range(1, k + 1):
@@ -175,3 +176,4 @@ nums = list(map(int, input().split()))
 result = compute_powers(n, k, nums)
 for value in result:
     print(value)
+
