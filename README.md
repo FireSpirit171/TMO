@@ -8,3 +8,4 @@
 - [Лабораторная работа №4](https://github.com/FireSpirit171/TMO/tree/main/lab4)
 - [Лабораторная работа №5](https://github.com/FireSpirit171/TMO/tree/main/lab5)
 - [Лабораторная работа №6](https://github.com/FireSpirit171/TMO/tree/main/lab6)
+- [Лабораторная работа №7](https://github.com/FireSpirit171/TMO/tree/main/lab7)
